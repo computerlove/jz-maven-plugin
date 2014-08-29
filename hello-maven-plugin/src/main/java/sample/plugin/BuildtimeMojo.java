@@ -22,6 +22,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * Goal which touches a timestamp file.
@@ -38,6 +41,20 @@ public class BuildtimeMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException  {
+        if ( !outputDirectory.exists() ){
+            boolean mkdirsSuccess = outputDirectory.mkdirs();
+            if(!mkdirsSuccess){
+                getLog().warn("Could not create " + outputDirectory.getAbsolutePath());
+            }
+        }
+
+        File properties = new File( outputDirectory, "build.properties" );
+
+        try (FileWriter w = new FileWriter( properties ) ) {
+            w.write( "build.timestamp = " + Calendar.getInstance().getTime());
+        } catch ( IOException e ) {
+            throw new MojoExecutionException( "Error creating file " + properties, e );
+        }
 
     }
 }
