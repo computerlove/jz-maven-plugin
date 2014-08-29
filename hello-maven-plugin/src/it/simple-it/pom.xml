@@ -21,9 +21,9 @@
         <version>@project.version@</version>
         <executions>
           <execution>
-            <id>buildtime</id>
+            <id>source</id>
             <goals>
-              <goal>buildtime</goal>
+              <goal>source</goal>
             </goals>
           </execution>
         </executions>

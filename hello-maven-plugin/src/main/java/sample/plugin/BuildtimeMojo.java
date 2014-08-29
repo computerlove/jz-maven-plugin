@@ -20,6 +20,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,28 +31,32 @@ import java.util.Calendar;
  * Goal which touches a timestamp file.
  *
  */
-@Mojo( name = "buildtime", defaultPhase = LifecyclePhase.GENERATE_RESOURCES )
+@Mojo( name = "source", defaultPhase = LifecyclePhase.GENERATE_SOURCES )
 public class BuildtimeMojo extends AbstractMojo {
 
     /**
      * Location of target/classes.
      */
-    @Parameter( defaultValue = "${project.build.directory}/classes", property = "outputDir", required = true )
-    private File outputDirectory;
+    @Parameter( defaultValue = "${project.build.directory}/generated-sources", property = "generated-sources", required = true )
+    private File outputSourceDirectory;
+
+    @Parameter(property = "project", readonly = true)
+    private MavenProject project;
+
 
     @Override
     public void execute() throws MojoExecutionException  {
-        if ( !outputDirectory.exists() ){
-            boolean mkdirsSuccess = outputDirectory.mkdirs();
+        if ( !outputSourceDirectory.exists() ){
+            boolean mkdirsSuccess = outputSourceDirectory.mkdirs();
             if(!mkdirsSuccess){
-                getLog().warn("Could not create " + outputDirectory.getAbsolutePath());
+                getLog().warn("Could not create " + outputSourceDirectory.getAbsolutePath());
             }
         }
 
-        File properties = new File( outputDirectory, "build.properties" );
+        File properties = new File( outputSourceDirectory, "Generated.java" );
 
         try (FileWriter w = new FileWriter( properties ) ) {
-            w.write( "build.timestamp = " + Calendar.getInstance().getTime());
+            w.write( "Our java file" );
         } catch ( IOException e ) {
             throw new MojoExecutionException( "Error creating file " + properties, e );
         }
