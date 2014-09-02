@@ -5,12 +5,13 @@ How to write a maven plugin
 A Maven archetype exists for creating the skeleton of Maven plugins, we will start by executing the following on 
 the commandline:
 
-```$ mvn archetype:generate \
-          -DgroupId=sample.plugin \
-          -DartifactId=hello-maven-plugin \
-          -Dversion=1.0-SNAPSHOT \
-          -DarchetypeGroupId=org.apache.maven.archetypes \
-          -DarchetypeArtifactId=maven-archetype-plugin```
+```$ mvn archetype:generate
+          -DgroupId=sample.plugin
+          -DartifactId=hello-maven-plugin
+          -Dversion=1.0-SNAPSHOT
+          -DarchetypeGroupId=org.apache.maven.archetypes
+          -DarchetypeArtifactId=maven-archetype-plugin
+          -B```
 
 You may change groupId, artifactId, and version to values of your choosing.
 
@@ -36,7 +37,7 @@ asserts that the file created by our mojo exists.
 
 __MyMojo__
 
-This is our mojo. There are many like it, but this one is mine!
+This is our mojo( **M**aven plain **O**ld **J**ava **O**bject). There are many like it, but this one is mine!
 
 What makes this class a mojo is the fact that it extends [AbstractMojo](http://maven.apache.org/ref/3.2.1/maven-plugin-api/apidocs/org/apache/maven/plugin/AbstractMojo.html), and that it is annotated with [@Mojo](https://maven.apache.org/plugin-tools/maven-plugin-annotations/apidocs/org/apache/maven/plugins/annotations/Mojo.html).
 
@@ -54,4 +55,10 @@ The defaultValue parameter provides what value should be used when the parameter
  It supports using [expressions](http://maven.apache.org/ref/3.2.3/maven-core/apidocs/org/apache/maven/plugin/PluginParameterExpressionEvaluator.html) 
  for values known by Maven.
  
-Ok, lets go to step two, and do somthing more than creating an empty file by executing ```git -f checkout step-2``` 
+Ok, lets go to step two, and do somthing more than creating an empty file by executing ```git checkout step-2 -f``` 
+
+## Useful resources ##
+* [Mojo API Specification](http://maven.apache.org/developers/mojo-api-specification.html)
+* [Guide to Developing Java Plugins](http://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
+* [Maven Plugin Plugin](http://maven.apache.org/plugin-tools/maven-plugin-plugin/)
+* [Maven Plugin Tool for Annotations](http://maven.apache.org/plugin-tools/maven-plugin-tools-annotations/index.html)
