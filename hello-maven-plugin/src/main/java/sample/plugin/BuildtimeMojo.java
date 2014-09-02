@@ -20,7 +20,6 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,10 +38,6 @@ public class BuildtimeMojo extends AbstractMojo {
      */
     @Parameter( defaultValue = "${project.build.directory}/generated-sources", property = "generated-sources", required = true )
     private File outputSourceDirectory;
-
-    @Parameter(property = "project", readonly = true)
-    private MavenProject project;
-
 
     @Override
     public void execute() throws MojoExecutionException  {
