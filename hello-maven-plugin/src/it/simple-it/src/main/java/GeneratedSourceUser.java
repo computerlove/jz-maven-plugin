@@ -1,11 +1,12 @@
-
 import java.io.IOException;
-import java.lang.IllegalStateException;
-import java.util.Properties;
 
 public class GeneratedSourceUser {
 
-    public GeneratedSourceUser() throws IOException {
-
+    public GeneratedSourceUser() {
+        try(Generated generated = new Generated()){
+            System.out.println("Lalala!");
+        } catch ( IOException e ) {
+            System.out.println(":O");
+        }
     }
 }
