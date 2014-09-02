@@ -20,11 +20,11 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 
 /**
  * Goal which touches a timestamp file.
@@ -36,8 +36,12 @@ public class BuildtimeMojo extends AbstractMojo {
     /**
      * Location of target/classes.
      */
-    @Parameter( defaultValue = "${project.build.directory}/generated-sources", property = "generated-sources", required = true )
+    @Parameter( defaultValue = "${project.build.directory}/generated-sources/something", property = "generated-sources", required = true )
     private File outputSourceDirectory;
+
+    @Parameter(property = "project", readonly = true)
+    private MavenProject project;
+
 
     @Override
     public void execute() throws MojoExecutionException  {
@@ -51,10 +55,20 @@ public class BuildtimeMojo extends AbstractMojo {
         File properties = new File( outputSourceDirectory, "Generated.java" );
 
         try (FileWriter w = new FileWriter( properties ) ) {
-            w.write( "Our java file" );
+            w.write( "import java.io.IOException;" +
+                    "public class Generated implements java.io.Closeable {" +
+                    "    public Generated() {" +
+                    "        System.out.println(\"Creating\");" +
+                    "    }" +
+                    "    @Override" +
+                    "    public void close() throws IOException {" +
+                    "        System.out.println(\"Closing\");" +
+                    "    }" +
+                    "}" );
         } catch ( IOException e ) {
             throw new MojoExecutionException( "Error creating file " + properties, e );
         }
 
+        project.addCompileSourceRoot(outputSourceDirectory.getPath());
     }
 }
