@@ -41,3 +41,5 @@ MavenProject has a method *addCompileSourceRoot(path)*, that allows us to tell M
 It supports both absolute paths, and paths relative to the projects base directory i.e. the folder containing the pom.
 
 A convension when generating sources is to put them in *target/generated-sources/something*. 
+
+Ok, lets move on to looking at the project's artifacts! Checkout step 4 with ```git checkout step-4 -f```
