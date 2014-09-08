@@ -1,45 +1,20 @@
 How to write a maven plugin
 ===============
 
-## Step three, generating and compiling sources ##
-Great, now that we have generated a resource, lets generate some sources!
-In some cases it is handy to generate code, and use it in our project. One common example is generating code
-based on wsdl and xsd files, for easier interaction with WebServices. 
+## Step four, accessing dependencies ##
+Unless you are making every thing from scratch, your project will most likely have dependencies. Your new task is to 
+access the dependency graph, and print all dependencies your project have.
 
-Your new task is to modify BuildtimeMojo to generate a java file that is compiled when the project using the mojo is compiled.
 
-To match the test created for this task the class should be called *Generated*, have no package, and implement java.io.Closeable.
-
-When you have made the required changes to *BuildtimeMojo.java*, you can run ```mvn install -P run-its``` to run a test verifying that 
-executing the plugin has the desired effect.
-
-If you are stuck you may want to check out the branch *step-3-solution* where a solution proposal exists. 
 
 ## What you need to know ##
-One solution would be to generate the code and put it in *src/main/java*, but this is not ideal. 
 
-When compiling the project's sources, maven looks in the project source directory, which by default is 
-*src/main/java* for a Java project. 
-When building, Maven does by default not look anywhere else for sources, but we can easily tell it that we want to
-include some source files.
+Checkout step 5 with ```git checkout step-5 -f```
 
-In order to tell Maven that we want to add sources we have to get hold of the project the plugin is running in.
-Because *maven-plugin-api* is only used when building the plugin we need *maven-core* to get access to runtime information. We include it as a dependency by adding:
-
-    <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-core</artifactId>
-        <version>3.2.2</version>
-    </dependency>
-
-To get the current project injected into our mojo, add the following field:
-
-    @Parameter(property = "project", readonly = true)
-    private MavenProject project;
-
-MavenProject has a method *addCompileSourceRoot(path)*, that allows us to tell Maven to look there for sources to compile.
-It supports both absolute paths, and paths relative to the projects base directory i.e. the folder containing the pom.
-
-A convension when generating sources is to put them in *target/generated-sources/something*. 
-
-Ok, lets move on to looking at the project's artifacts! Checkout step 4 with ```git checkout step-4 -f```
+## Usefull resources ##
+* [What's in Maven 3.0 for Plugin Authors?](http://blog.sonatype.com/2010/11/whats-in-maven-3-0-for-plugin-authors)
+* [Review of Plugin Testing Strategies](http://docs.codehaus.org/display/MAVENUSER/Review+of+Plugin+Testing+Strategies)
+* [Testing maven plugins with the verifier approach](http://blog.akquinet.de/2011/02/21/testing-maven-plugins-with-the-verifier-approach/)
+* [How To Use Maven Plugin Testing Harness?](http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/getting-started/index.html)
+* []()
+* []()
