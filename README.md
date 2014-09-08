@@ -13,7 +13,7 @@ look at the log for the plugin execution.
 influence the result we get when calling *getDependencyArtifacts()*(direct dependencies) and *getArtifacts()*(all dependencies, including transitive).
 
 Both *requiresDependencyResolution* and *requiresDependencyCollection* has default value «NONE». 
-*requiresDependencyResolution* is used to tell Maven [which classpath](http://maven.apache.org/developers/mojo-api-specification.html) 
+*requiresDependencyResolution* is used to tell Maven [which classpath](http://maven.apache.org/developers/mojo-api-specification.html#The_Descriptor_and_Annotations) 
 we want to have resolved for the project in question before execution. 
 The difference between resolution and collection is that resolution concerns only discovering the dependency graph, while collection 
 resolves the artifacts and download their files.
@@ -44,5 +44,4 @@ Checkout step 5 with ```git checkout step-5 -f```
 * [Review of Plugin Testing Strategies](http://docs.codehaus.org/display/MAVENUSER/Review+of+Plugin+Testing+Strategies)
 * [Testing maven plugins with the verifier approach](http://blog.akquinet.de/2011/02/21/testing-maven-plugins-with-the-verifier-approach/)
 * [How To Use Maven Plugin Testing Harness?](http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/getting-started/index.html)
-* []()
-* []()
+* [dependency:tree](http://svn.apache.org/repos/asf/maven/plugins/tags/maven-dependency-plugin-2.8/src/main/java/org/apache/maven/plugin/dependency/tree/TreeMojo.java)
