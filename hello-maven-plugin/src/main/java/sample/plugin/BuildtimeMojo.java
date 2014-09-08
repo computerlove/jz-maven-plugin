@@ -14,19 +14,32 @@ package sample.plugin;
  * limitations under the License.
  */
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.project.MavenProject;
+
+import java.util.Set;
 
 /**
  * Goal which lists all dependencies
  *
  */
-@Mojo( name = "dependencies")
+@Mojo( name = "dependencies", requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class BuildtimeMojo extends AbstractMojo {
+
+    @Parameter(property = "project", readonly = true, required = true)
+    private MavenProject project;
+
     @Override
     public void execute() throws MojoExecutionException  {
-        getLog().info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        Set<Artifact> artifacts = project.getArtifacts();
+        for (Artifact dependencyArtifact : artifacts) {
+            getLog().info(dependencyArtifact.toString());
+        }
 
     }
 }
