@@ -25,7 +25,15 @@ public class DependencyPluginTest {
         verifier.executeGoal("hello-maven-plugin:dependencies");
 
         verifier.verifyErrorFreeLog();
-        verifier.verifyTextInLog("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        verifier.verifyTextInLog("org.apache.httpcomponents");
+        verifier.verifyTextInLog("httpclient");
+
+        verifier.verifyTextInLog("org.apache.httpcomponents");
+        verifier.verifyTextInLog("httpcore");
+
+        verifier.verifyTextInLog("commons-logging");
+
+        verifier.verifyTextInLog("commons-codec");
     }
 
 
