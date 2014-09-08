@@ -2,10 +2,10 @@ How to write a maven plugin
 ===============
 
 ## About ##
-[Maven plugin](http://maven.apache.org/plugin-developers/index.html) workshop at [Javazone](javazone.no) 2014.
+[Maven plugin](http://maven.apache.org/plugin-developers/index.html) workshop at [Javazone](http://javazone.no) 2014.
 
 Clone this repo:
-```git@github.com:kantega/jz-maven-plugin.git```
+```git clone https://github.com/kantega/jz-maven-plugin.git```
 
 ## Requirements ##
 
