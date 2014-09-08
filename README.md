@@ -6,16 +6,14 @@ A Maven archetype exists for creating the skeleton of Maven plugins, we will sta
 the commandline:
 
 ```$ mvn archetype:generate
-          -DgroupId=sample.plugin
+          -DgroupId=no.javazone.workshop
           -DartifactId=hello-maven-plugin
           -Dversion=1.0-SNAPSHOT
           -DarchetypeGroupId=org.apache.maven.archetypes
           -DarchetypeArtifactId=maven-archetype-plugin
           -B```
 
-You may change groupId, artifactId, and version to values of your choosing.
-
-After pressing enter when prompted, we now have a simple Mojo with a simple test.
+After running this, we now have a simple Mojo with a simple test.
 Open the project in your favourite IDE, and run mvn install.
 
 __pom.xml__
