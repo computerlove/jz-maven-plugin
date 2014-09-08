@@ -44,5 +44,3 @@ Checkout step 5 with ```git checkout step-5 -f```
 * [Review of Plugin Testing Strategies](http://docs.codehaus.org/display/MAVENUSER/Review+of+Plugin+Testing+Strategies)
 * [Testing maven plugins with the verifier approach](http://blog.akquinet.de/2011/02/21/testing-maven-plugins-with-the-verifier-approach/)
 * [How To Use Maven Plugin Testing Harness?](http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/getting-started/index.html)
-* []()
-* []()
