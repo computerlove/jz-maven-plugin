@@ -14,15 +14,19 @@ package sample.plugin;
  * limitations under the License.
  */
 
+import org.apache.maven.ProjectDependenciesResolver;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
-import java.util.Set;
+import static java.util.Arrays.asList;
 
 /**
  * Goal which lists all dependencies
@@ -31,14 +35,27 @@ import java.util.Set;
 @Mojo( name = "dependencies", requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class BuildtimeMojo extends AbstractMojo {
 
-    @Parameter(property = "project", readonly = true, required = true)
+    @Component
     private MavenProject project;
+
+    @Component
+    private ProjectDependenciesResolver projectDependenciesResolver;
+
+    @Component
+    private MavenSession mavenSession;
 
     @Override
     public void execute() throws MojoExecutionException  {
-        Set<Artifact> artifacts = project.getArtifacts();
-        for (Artifact dependencyArtifact : artifacts) {
+        for (Artifact dependencyArtifact : project.getArtifacts()) {
             getLog().info(dependencyArtifact.toString());
+        }
+        // or like this:
+        try {
+            for (Artifact a : projectDependenciesResolver.resolve(project, asList("compile", "runtime"), mavenSession)) {
+                getLog().info(a.toString());
+            }
+        } catch (ArtifactNotFoundException | ArtifactResolutionException e) {
+            throw new MojoExecutionException("Error resolving dependencies", e);
         }
 
     }
