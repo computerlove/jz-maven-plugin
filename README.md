@@ -4,6 +4,9 @@ How to write a maven plugin
 ## About ##
 [Maven plugin](http://maven.apache.org/plugin-developers/index.html) workshop at [Javazone](javazone.no) 2014.
 
+Clone this repo:
+```git@github.com:kantega/jz-maven-plugin.git```
+
 ## Requirements ##
 
 * Git 1.7.10+
@@ -15,7 +18,7 @@ How to write a maven plugin
 Everything that is done during the Maven-build is done in [plugins](http://maven.apache.org/plugins/index.html). 
 Processing of resources are done with [Maven Resources Plugin](http://maven.apache.org/plugins/maven-resources-plugin/),
 Compiling of sources are done with [Maven Compiler Plugin](http://maven.apache.org/plugins/maven-compiler-plugin/),
-Assemblt of jar and war files are done with [Maven JAR Plugin](http://maven.apache.org/plugins/maven-jar-plugin/) and 
+Assembly of jar and war files are done with [Maven JAR Plugin](http://maven.apache.org/plugins/maven-jar-plugin/) and 
 [Maven WAR Plugin](http://maven.apache.org/plugins/maven-war-plugin/)…
 
 Through Maven's plugin api we can hook into any [phase](https://maven.apache.org/plugin-tools/maven-plugin-annotations/apidocs/org/apache/maven/plugins/annotations/LifecyclePhase.html) of the build in order to do our own tasks.
@@ -33,5 +36,5 @@ The problem with this is that there is usually no description of why a particula
 replaces it. 
 
 ## Enough ranting, lets start hacking! ##
-This workshop is based on one branch per step. To get started with step one execute ```git -f checkout step-1``` 
+This workshop is based on one branch per step. To get started with step one execute ```git checkout step-1 -f``` 
 
