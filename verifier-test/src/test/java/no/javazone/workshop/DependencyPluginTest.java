@@ -1,4 +1,4 @@
-package sample.plugin;
+package no.javazone.workshop;
 
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;

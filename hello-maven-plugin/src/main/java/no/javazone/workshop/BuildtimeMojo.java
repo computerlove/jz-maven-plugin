@@ -1,4 +1,4 @@
-package sample.plugin;
+package no.javazone.workshop;
 
 /*
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 public class BuildtimeMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException  {
-        getLog().info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        
 
     }
 }
