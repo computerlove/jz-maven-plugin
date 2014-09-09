@@ -34,7 +34,7 @@ Because *maven-plugin-api* is only used when building the plugin we need *maven-
 
 To get the current project injected into our mojo, add the following field:
 
-    @Parameter(property = "project", readonly = true)
+    @Component
     private MavenProject project;
 
 MavenProject has a method *addCompileSourceRoot(path)*, that allows us to tell Maven to look there for sources to compile.
