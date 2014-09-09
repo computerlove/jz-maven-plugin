@@ -16,6 +16,7 @@ package no.javazone.workshop;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -38,7 +39,7 @@ public class BuildtimeMojo extends AbstractMojo {
     @Parameter( defaultValue = "${project.build.directory}/generated-sources/something", property = "generated-sources", required = true )
     private File outputSourceDirectory;
 
-    @Parameter(property = "project", readonly = true)
+    @Component
     private MavenProject project;
 
 
