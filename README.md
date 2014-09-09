@@ -42,4 +42,14 @@ It supports both absolute paths, and paths relative to the projects base directo
 
 A convension when generating sources is to put them in *target/generated-sources/something*. 
 
+
+[@Component](https://maven.apache.org/plugin-tools/maven-plugin-annotations/apidocs/org/apache/maven/plugins/annotations/Component.html) 
+is kinda like *@Parameter*. The difference is that @Parameter is more suitable for settings, while @Component is 
+for getting helper components injected into your mojo.
+ 
+In some cases, where the component [has an expression](http://maven.apache.org/ref/3.2.3/maven-core/apidocs/org/apache/maven/plugin/PluginParameterExpressionEvaluator.html) it is possible to use either:  
+    
+    @Parameter(property = "project", readonly = true)
+    private MavenProject project;
+ 
 Ok, lets move on to looking at the project's artifacts! Checkout step 4 with ```git checkout step-4 -f```
