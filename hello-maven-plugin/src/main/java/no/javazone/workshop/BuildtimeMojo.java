@@ -37,6 +37,7 @@ public class BuildtimeMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException  {
-
+        // generate build.properties with property build.timestamp in correct location.
+        // run mvn install -P run-its
     }
 }
