@@ -21,12 +21,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Calendar;
 
 /**
- * Goal which touches a timestamp file.
+ * Goal that generates java, and add it as source dir.
  *
  */
 @Mojo( name = "source", defaultPhase = LifecyclePhase.GENERATE_SOURCES )
@@ -35,7 +32,7 @@ public class BuildtimeMojo extends AbstractMojo {
     /**
      * Location of target/classes.
      */
-    @Parameter( defaultValue = "${project.build.directory}/generated-sources", property = "generated-sources", required = true )
+    @Parameter( defaultValue = "${project.build.directory}/generated-sources/something", property = "generated-sources", required = true )
     private File outputSourceDirectory;
 
     @Override
@@ -47,13 +44,9 @@ public class BuildtimeMojo extends AbstractMojo {
             }
         }
 
-        File properties = new File( outputSourceDirectory, "Generated.java" );
-
-        try (FileWriter w = new FileWriter( properties ) ) {
-            w.write( "Our java file" );
-        } catch ( IOException e ) {
-            throw new MojoExecutionException( "Error creating file " + properties, e );
-        }
-
+        // Get hold of reference to the building project
+        // Add outputSourceDirectory as CompileSourceRoot
+        // Generate class «Generated» with no package, implementing java.io.Closeable.
+        // run mvn install -P run-its
     }
 }
