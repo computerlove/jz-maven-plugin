@@ -24,10 +24,10 @@ Ps. From the javadoc of *getArtifacts()*: «Contents are lazily populated, so de
 
 Luckily, in case we want to inspect all dependecies in a early build phase, there is other ways to resolve dependencies.
 
-    @Component(role = ProjectDependenciesResolver.class)
+    @Component
     private ProjectDependenciesResolver projectDependenciesResolver;
     
-    @Parameter(defaultValue = "${session}", readonly = true)
+    @Component
     private MavenSession mavenSession;
     
     public void execute(){
