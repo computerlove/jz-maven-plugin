@@ -26,7 +26,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 public class BuildtimeMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException  {
-        
+        // get a reference to the Maven Project
+        // print all groupId and artifactId of all dependencies to log.
+        // run mvn install from parent project.
 
     }
 }
